@@ -27,9 +27,9 @@ test.describe('Login tests', () => {
         await login.clickOnSignIn();
 
         let errorMsg = await page.locator('.messages .error.message > div').textContent();
-        await expect(errorMsg).toEqual('Incorrect CAPTCHA');
+        expect(errorMsg).toEqual('Incorrect CAPTCHA');
         const result = await login.isNotLoggedIn();
-        await expect(result).toBe(true);
+        expect(result).toBe(true);
     })
 
 });
