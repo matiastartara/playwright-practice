@@ -22,12 +22,15 @@ test.describe('Login tests', () => {
         await expect(page).toHaveTitle('Home Page');
         await home.clickOnSignIn();
         await expect(page).toHaveTitle('Customer Login');
+
+        //Complete fields with invalid user and passwd
         await login.completeUsername('user@invalid.com');
         await login.completePassword('12345');
         await login.clickOnSignIn();
 
+        //Check login invalid message
         let errorMsg = await page.locator('.messages .error.message > div').textContent();
-        expect(errorMsg).toEqual('Incorrect CAPTCHA');
+        expect(errorMsg).toEqual('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
         const result = await login.isNotLoggedIn();
         expect(result).toBe(true);
     })
