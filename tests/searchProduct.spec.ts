@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import HomePage from '../pages/HomePage';
-import CatalogPage from '../pages/Catalog';
+import CatalogPage from '../pages/CatalogPage';
 
 const URL = 'https://magento.softwaretestingboard.com/';
 let home: HomePage;
@@ -20,23 +20,16 @@ test.describe('Search Product tests', () => {
 
     test('Search product test', async ({ page }) => {
         await expect(page).toHaveTitle('Home Page');
-        let product = 'yoga';
-
-        const responsePromise = page.waitForResponse(
-            resp => resp.url().includes('/checkout/captcha.html')
-                && resp.status() === 200
-
-        );
-
+        const product = 'yoga';
         await home.searchProduct(product);
 
         //Wait for load products 
-        const response = await responsePromise;
+        await catalog.waitForCaptcha(page); 
         const productCountPromise = await catalog.getProductListSize();
         expect(productCountPromise).toBeGreaterThanOrEqual(12);
 
         //Check all product names contains same product name
-        const texts = await catalog.getProducts();
+        const texts = await catalog.getProductNames();
         for (let text of texts) {
             console.log(text);
             expect(text.toLowerCase()).toContain(product);
