@@ -53,7 +53,7 @@ test.describe('Buy product test', () => {
         await shippingPage.completeEmail("test@test.com");
         await shippingPage.completeFirstName('name');
         await shippingPage.completeLastName('lastname');
-       
+        await shippingPage.completeCompany('company');
 
     })
 
