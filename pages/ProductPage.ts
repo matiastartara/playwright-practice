@@ -34,8 +34,9 @@ export class ProductPage {
     }
 
     async procededToCheckout() {
-        await this.page.waitForSelector("id=top-cart-btn-checkout", { state: 'visible' });
-        await this.page.locator('id=top-cart-btn-checkout').click();
+        await this.page.waitForSelector('span:has-text("Cart Subtotal")', { state: 'visible' });
+        const button = await this.page.waitForSelector('#top-cart-btn-checkout', { state: 'visible' });
+        await button.click();
     }
 
 

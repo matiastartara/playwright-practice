@@ -54,6 +54,10 @@ test.describe('Buy product test', () => {
         await shippingPage.completeFirstName('name');
         await shippingPage.completeLastName('lastname');
         await shippingPage.completeCompany('company');
+        await shippingPage.completePassword('testpwd');
+        await shippingPage.completeStreet('street 123');
+
+
 
     })
 
