@@ -56,9 +56,14 @@ test.describe('Buy product test', () => {
         await shippingPage.completeCompany('company');
         await shippingPage.completePassword('testpwd');
         await shippingPage.completeStreet('street 123');
+        await shippingPage.completeCity('Tandil');
+        await shippingPage.selectState('5');
+        await shippingPage.setPhone('34567');
+        await shippingPage.setRandomShippingMethod();
+        await shippingPage.setPostalCode('123');
+        await shippingPage.clickOnNext();
 
-
-
+        //TODO add payment page and methods
     })
 
 });
