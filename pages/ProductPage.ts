@@ -39,7 +39,6 @@ export class ProductPage {
         await button.click();
     }
 
-
 }
 
 export default ProductPage;

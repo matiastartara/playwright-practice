@@ -3,12 +3,14 @@ import HomePage from '../pages/HomePage';
 import CatalogPage from '../pages/CatalogPage';
 import ProductPage from '../pages/ProductPage';
 import ShippingPage from '../pages/ShippingPage';
+import PaymentPage from '../pages/PaymentPage';
 
 const URL = 'https://magento.softwaretestingboard.com/';
 let homePage: HomePage;
 let catalogPage: CatalogPage;
 let productPage: ProductPage;
 let shippingPage : ShippingPage;
+let paymentPage : PaymentPage;
 
 test.describe('Buy product test', () => {
 
@@ -18,6 +20,7 @@ test.describe('Buy product test', () => {
         catalogPage = new CatalogPage(page);
         productPage = new ProductPage(page);
         shippingPage = new ShippingPage(page);
+        paymentPage = new PaymentPage(page);
     });
 
     test.afterEach(async ({ page }) => {
@@ -50,6 +53,7 @@ test.describe('Buy product test', () => {
         await productPage.openCart();
         await productPage.procededToCheckout();
 
+        //Set shipping information
         await shippingPage.completeEmail("test@test.com");
         await shippingPage.completeFirstName('name');
         await shippingPage.completeLastName('lastname');
@@ -63,7 +67,11 @@ test.describe('Buy product test', () => {
         await shippingPage.setPostalCode('123');
         await shippingPage.clickOnNext();
 
-        //TODO add payment page and methods
+        //Finish payment section
+        await paymentPage.clickOnPlaceOrder();
+        const text = await paymentPage.getMessageConfirmation();
+        expect(text).toBe('Thank you for your purchase!');
+
     })
 
 });
