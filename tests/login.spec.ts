@@ -3,6 +3,9 @@ import HomePage from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 
 const URL = 'https://magento.softwaretestingboard.com/';
+
+const email = process.env.EMAIL!;
+const password = process.env.PASSWORD!;
 let home: HomePage;
 let login: LoginPage;
 
@@ -24,8 +27,8 @@ test.describe('Login tests', () => {
         await expect(page).toHaveTitle('Customer Login');
 
         //Complete fields with invalid user and passwd
-        await login.completeUsername('user@invalid.com');
-        await login.completePassword('12345');
+        await login.completeUsername(email);
+        await login.completePassword(password);
         await login.clickOnSignIn();
 
         //Check login invalid message
