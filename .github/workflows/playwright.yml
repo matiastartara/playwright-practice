@@ -11,6 +11,10 @@ jobs:
 
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      EMAIL: ${{ env.EMAIL }}
+      PASSWORD: ${{ env.PASSWORD }} 
+      
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
