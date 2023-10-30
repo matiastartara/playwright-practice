@@ -4,11 +4,8 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-
-env:
-  EMAIL: ${{ env.EMAIL }}
-  PASSWORD: ${{ env.PASSWORD }}    
     
+
 jobs:
   test:
     timeout-minutes: 60
@@ -24,6 +21,11 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+
+      env:
+        EMAIL: ${{ env.EMAIL }}
+        PASSWORD: ${{ env.PASSWORD }} 
+          
     - uses: actions/upload-artifact@v3
       if: always()
       with:
