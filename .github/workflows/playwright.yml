@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -22,10 +23,6 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
 
-      env:
-        EMAIL: ${{ env.EMAIL }}
-        PASSWORD: ${{ env.PASSWORD }} 
-          
     - uses: actions/upload-artifact@v3
       if: always()
       with:
