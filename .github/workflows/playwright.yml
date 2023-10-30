@@ -6,8 +6,8 @@ on:
     branches: [ main, master ]
 
 env:
-  EMAIL: ${{ env.EMAIL }}
-  PASSWORD: ${{ env.PASSWORD }}    
+  EMAIL: ${{ EMAIL }}
+  PASSWORD: ${{ PASSWORD }}    
     
 jobs:
   test:
