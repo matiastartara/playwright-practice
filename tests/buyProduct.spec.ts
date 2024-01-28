@@ -31,9 +31,10 @@ test.describe('Buy product test', () => {
         await expect(page).toHaveTitle('Home Page');
         let product = 'yoga';
 
+        //Search product
         await homePage.searchProduct(product);
 
-        //Check product list size 
+        //Check product result list size 
         await catalogPage.waitForCaptcha(page);
         const productCountPromise = await catalogPage.getProductListSize();
         expect(productCountPromise).toBeGreaterThanOrEqual(12);
