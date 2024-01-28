@@ -26,7 +26,7 @@ test.describe('Login tests', () => {
         await home.clickOnSignIn();
         await expect(page).toHaveTitle('Customer Login');
 
-        //Complete fields with invalid user and passwd
+        //Complete fields with invalid user and password
         await login.completeUsername(email);
         await login.completePassword(password);
         await login.clickOnSignIn();

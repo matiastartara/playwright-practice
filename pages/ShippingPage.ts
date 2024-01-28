@@ -31,19 +31,19 @@ export class ShippingPage {
         this.shippingMethods = page.locator('.table-checkout-shipping-method tr input');
         this.postalCode = page.locator('[name="shippingAddress.postcode"] input');
         this.nextButton = page.locator('#shipping-method-buttons-container [type="submit"]');
-        this.loadingComponent = page.getByTitle('Loading...');
     }
 
-    async waitForLoadingToHide() {
-        await this.loadingComponent.waitFor({ state: 'hidden', timeout: 60000 });
+    async waitForLoading() {
+         await this.page.waitForSelector('[alt="Loading..."]', { state: 'hidden', timeout: 120000 });
     }
 
     async completeEmail(mail: string) {
+        await this.waitForLoading();
         await this.email.fill(mail);
     }
 
     async completeFirstName(name: string) {
-        await this.waitForLoadingToHide();
+        await this.waitForLoading();
         await this.firstName.fill(name);
     }
 
@@ -56,7 +56,7 @@ export class ShippingPage {
     }
 
     async completePassword(pwd: string) {
-        await this.waitForLoadingToHide();
+        await this.waitForLoading();
         await this.password.fill(pwd);
     }
 
