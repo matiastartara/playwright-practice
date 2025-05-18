@@ -11,7 +11,7 @@ test.describe("API Testing with Playwright", () => {
     });
 
     test("GET API Request with - InValid 404 Response ", async ({ request }) => {
-        const response = await request.get(`${baseurl}/usres/invalid-data`);
+        const response = await request.get(`${baseurl}/users/23`);
         expect(response.status()).toBe(404);
     });
 
