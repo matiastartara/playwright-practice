@@ -3,7 +3,6 @@ import HomePage from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 
 const URL = 'https://magento.softwaretestingboard.com/';
-
 const email = process.env.EMAIL!;
 const password = process.env.PASSWORD!;
 let home: HomePage;
