@@ -4,9 +4,10 @@ import { test, expect } from '@playwright/test';
 test.describe("API Testing with Playwright", () => {
 
     const baseurl = "https://reqres.in/api";
+    const headers = {'x-api-key': 'reqres-free-v1'};
 
     test("GET API Request with - Valid 200 Response ", async ({ request }) => {
-        const response = await request.get(`${baseurl}/users/2`);
+        const response = await request.get(`${baseurl}/users/2`, { headers });
         expect(response.status()).toBe(200);
     });
 
@@ -16,7 +17,7 @@ test.describe("API Testing with Playwright", () => {
     });
 
     test("GET Request - Verify User detils ", async ({ request }) => {
-        const response = await request.get(`${baseurl}/users/2`);
+        const response = await request.get(`${baseurl}/users/2`,{ headers });
         const responseBody = JSON.parse(await response.text());
         expect(response.status()).toBe(200);
         expect(responseBody.data.id).toBe(2);
@@ -33,9 +34,7 @@ test.describe("API Testing with Playwright", () => {
 
         const response = await request.post(`${baseurl}/register`, {
             data: payload,
-            headers: {
-                'x-api-key': 'reqres-free-v1'
-            }
+            headers
         });
 
         expect(response.status(), 'Should return 200 for successful registration').toBe(200);
