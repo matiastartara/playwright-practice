@@ -25,4 +25,26 @@ test.describe("API Testing with Playwright", () => {
         expect(responseBody.data.email).toBeTruthy();
     });
 
+    test("POST Request - Register User", async ({ request }) => {
+        const payload = {
+            email: 'eve.holt@reqres.in',
+            password: 'pistol'
+        };
+
+        const response = await request.post(`${baseurl}/register`, {
+            data: payload,
+            headers: {
+                'x-api-key': 'reqres-free-v1'
+            }
+        });
+
+        expect(response.status(), 'Should return 200 for successful registration').toBe(200);
+        const body = await response.json();
+        expect(body).toEqual({
+            id: 4,
+            token: 'QpwL5tke4Pnpja7X4'
+        });
+
+    });
+
 })
