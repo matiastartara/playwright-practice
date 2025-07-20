@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { logger } from '../utils/logger';
 
 
 test.describe("API Testing with Playwright", () => {
@@ -43,6 +44,8 @@ test.describe("API Testing with Playwright", () => {
             id: 4,
             token: 'QpwL5tke4Pnpja7X4'
         });
+
+          logger.info('Operación exitosa');
 
     });
 
